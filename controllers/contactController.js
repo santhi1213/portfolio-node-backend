@@ -26,6 +26,7 @@ const getContact = async (req, res) => {
   }
 };
 
+
 // @desc    Create or update contact info
 // @route   POST /api/Contact
 // @route   PUT /api/Contact
