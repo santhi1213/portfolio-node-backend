@@ -100,20 +100,78 @@ const register = async (req, res) => {
 // @desc    Login user
 // @route   POST /api/auth/login
 // @access  Public
+// const login = async (req, res) => {
+//   try {
+//     const { username, password } = req.body;
+
+//     // Validate input
+//     if (!username || !password) {
+//       return res.status(400).json({
+//         success: false,
+//         message: 'Please provide email and password'
+//       });
+//     }
+
+//     // Check for user
+//     const user = await User.findOne({ email: username });
+    
+//     if (!user) {
+//       return res.status(401).json({
+//         success: false,
+//         message: 'Invalid credentials'
+//       });
+//     }
+
+//     // Check password
+//     const isMatch = await user.comparePassword(password);
+    
+//     if (!isMatch) {
+//       return res.status(401).json({
+//         success: false,
+//         message: 'Invalid credentials'
+//       });
+//     }
+
+//     // Create token
+//     const token = generateToken(user._id);
+
+//     // Get user without password
+//     const userResponse = user.toObject();
+//     delete userResponse.password;
+
+//     res.status(200).json({
+//       success: true,
+//       token,
+//       user: userResponse
+//     });
+//   } catch (error) {
+//     console.error('Login error:', error);
+//     res.status(500).json({
+//       success: false,
+//       message: 'Server error'
+//     });
+//   }
+// };
+
+// @desc    Login user
+// @route   POST /api/auth/login
+// @access  Public
 const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body; // Accept both
 
-    // Validate input
-    if (!username || !password) {
+    // Validate input - check for either email or username
+    const loginIdentifier = username || email;
+    
+    if (!loginIdentifier || !password) {
       return res.status(400).json({
         success: false,
         message: 'Please provide email and password'
       });
     }
 
-    // Check for user
-    const user = await User.findOne({ email: username });
+    // Check for user using email field (since your schema uses email)
+    const user = await User.findOne({ email: loginIdentifier });
     
     if (!user) {
       return res.status(401).json({
@@ -148,7 +206,7 @@ const login = async (req, res) => {
     console.error('Login error:', error);
     res.status(500).json({
       success: false,
-      message: 'Server error'
+      message: 'Server error during login'
     });
   }
 };

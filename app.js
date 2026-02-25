@@ -124,11 +124,11 @@ const startServer = async () => {
     // Start server
     app.listen(PORT, () => {
       console.log(`✅ Server running on port ${PORT}`);
-      console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
-      console.log(`🩺 Health check: http://localhost:${PORT}/api/health`);
-      console.log(`👤 Registration: POST http://localhost:${PORT}/api/auth/register`);
-      console.log(`🔐 Login: POST http://localhost:${PORT}/api/auth/login`);
-      console.log(`📧 Default Admin: ${process.env.DEFAULT_ADMIN_EMAIL}`);
+      console.log(`🔗 API Base URL: https://portfolio-node-backend-eskk.onrender.com/api`);
+      console.log(`🩺 Health check: https://portfolio-node-backend-eskk.onrender.com/api/health`);
+      console.log(`👤 Registration: POST https://portfolio-node-backend-eskk.onrender.com/api/auth/register`);
+      console.log(`🔐 Login: POST https://portfolio-node-backend-eskk.onrender.com/api/auth/login`);
+      console.log(`📧 Default Admin: santhiraju32@gmail.com`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
