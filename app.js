@@ -56,7 +56,6 @@ app.get('/api/health', (req, res) => {
 });
 
 // Initialize default admin user
-// Initialize default admin user
 const initializeAdminUser = async () => {
   try {
     const adminExists = await User.findOne({ email: process.env.DEFAULT_ADMIN_EMAIL });
@@ -65,8 +64,8 @@ const initializeAdminUser = async () => {
       // Create admin user directly without going through middleware
       const user = new User({
         name: 'Portfolio Admin',
-        email: process.env.DEFAULT_ADMIN_EMAIL,
-        password: process.env.DEFAULT_ADMIN_PASSWORD, // Will be hashed by pre-save hook
+        email: 'santhiraju32@gmail.com',
+        password: 'Sree@1234', // Will be hashed by pre-save hook
         role: 'admin'
       });
       
