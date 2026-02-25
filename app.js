@@ -32,7 +32,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Your React app URL
+  origin: 'https://myportfolio-theta-vert.vercel.app', // Your React app URL
   credentials: true
 }));
 app.use(express.json());
